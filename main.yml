@@ -1,19 +1,13 @@
 - hosts: localhost
   gather_facts: true
 
-  tasks:
-    - name: Get the user running the deploy
-      shell: id -n -u
-      register: user
-      tags:
-        - skip_ansible_lint
-
   roles:
     - role: zzet.rbenv
       rbenv_users:
         - "{{user}}"
 
   vars:
+    - user: kemko
     - node_version: 8
     - isnt_ci: ansible_env.TRAVIS_JOB_ID is not defined
     - rbenv:
@@ -47,7 +41,7 @@
           - { name: "rbenv-ccache",
               repo: "https://github.com/yyuu/rbenv-ccache.git",
               version: "master" }
-
+  tasks:
     # essentials:
     - include: tasks/apt.yml
     - include: tasks/core.yml
@@ -62,7 +56,6 @@
 
     # browsers
     - include: tasks/chrome.yml
-    - include: tasks/tor-browser.yml
 
     # tools
     - include: tasks/awscli.yml

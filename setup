@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if test ! "$(which ansible)"; then
   echo "Installing ansible..."
@@ -8,4 +9,5 @@ fi
 
 python --version
 ansible --version
+ansible-galaxy -r requirements.yml install
 ansible-playbook main.yml -D

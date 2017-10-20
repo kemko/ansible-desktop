@@ -1,5 +1,0 @@
-- name: Tor-browser PPA
-  apt_repository: repo='ppa:webupd8team/tor-browser'
-
-- name: Install Tor-browser
-  package: name=tor-browser

@@ -21,4 +21,4 @@
 - name: Set zsh as default shell
   user: name={{user}} shell=/bin/zsh
   when: isnt_ci
-  become: false
+

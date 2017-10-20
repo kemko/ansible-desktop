@@ -12,6 +12,7 @@
     - cmake
     - ccache
     - graphviz
+    - git-crypt
 
     # cli
     - zsh
@@ -23,7 +24,6 @@
     - wget
     - ncdu
     - tree
-    - python-gpgme
     - whois
     - traceroute
     - iotop
@@ -35,6 +35,11 @@
     - gpa
     - meld
     - virtualbox
+    - torbrowser-launcher
+
+    # misc
+    - apt-transport-https
+    - python-gpgme
 
 - name: Install ubuntu-restricted-extras
   package: name=ubuntu-restricted-extras
