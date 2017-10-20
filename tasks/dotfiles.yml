@@ -1,6 +1,6 @@
 - name: Download dotfiles
   git:
-    repo=https://github.com/kemko/dotfiles.git
+    repo=git@github.com:kemko/dotfiles.git
     dest=~/.dotfiles
     version=master
     update=yes
