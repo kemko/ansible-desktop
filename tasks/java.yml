@@ -1,0 +1,7 @@
+- name: Install JDK 8
+  package: name={{item}}
+  with_items:
+    - openjdk-8-jre
+
+- name: Install Icedtea
+  package: name=icedtea-8-plugin

@@ -1,0 +1,9 @@
+/roles/*
+!/roles/.gitkeep
+
+
+*.retry
+
+*.orig
+*~
+*.swp

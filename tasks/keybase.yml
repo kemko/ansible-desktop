@@ -1,0 +1,5 @@
+- name: Add Keybase repository
+  apt_repository: repo='deb http://prerelease.keybase.io/deb stable main'
+
+- name: Install keybase
+  package: name=keybase

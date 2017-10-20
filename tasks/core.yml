@@ -1,0 +1,40 @@
+- name: Install core packages
+  package: name={{ item }}
+  with_items:
+    # work
+    - build-essential
+    - graphicsmagick-libmagick-dev-compat
+    - libmagickwand-dev
+    - libidn11-dev
+    - libldap2-dev
+    - libsasl2-dev
+    - libpq-dev
+    - cmake
+    - ccache
+    - graphviz
+
+    # cli
+    - zsh
+    - xsel
+    - xclip
+    - curl
+    - git
+    - htop
+    - wget
+    - ncdu
+    - tree
+    - python-gpgme
+    - whois
+    - traceroute
+    - iotop
+    - mosh
+    - httpie
+    - grc
+
+    # gui
+    - gpa
+    - meld
+    - virtualbox
+
+- name: Install ubuntu-restricted-extras
+  package: name=ubuntu-restricted-extras

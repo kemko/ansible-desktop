@@ -1,0 +1,81 @@
+- hosts: localhost
+  gather_facts: true
+
+  tasks:
+    - name: Get the user running the deploy
+      shell: id -n -u
+      register: user
+      tags:
+        - skip_ansible_lint
+
+  roles:
+    - role: zzet.rbenv
+      rbenv_users:
+        - "{{user}}"
+
+  vars:
+    - node_version: 8
+    - isnt_ci: ansible_env.TRAVIS_JOB_ID is not defined
+    - rbenv:
+        env: user
+        version: master
+        default_ruby: 2.4.2
+        rubies:
+          - version: 2.4.2
+        rbenv_clean_up: false
+        rbenv_plugins:
+          - { name: "ruby-build",
+              repo: "https://github.com/rbenv/ruby-build.git",
+              version: "master" }
+
+          - { name: "rbenv-default-gems",
+              repo: "https://github.com/rbenv/rbenv-default-gems.git",
+              version: "master" }
+
+          - { name: "rbenv-installer",
+              repo: "https://github.com/rbenv/rbenv-installer.git",
+              version: "master" }
+
+          - { name: "rbenv-update",
+              repo: "https://github.com/rkh/rbenv-update.git",
+              version: "master" }
+
+          - { name: "rbenv-bundler",
+              repo: "https://github.com/carsomyr/rbenv-bundler.git",
+              version: "master" }
+
+          - { name: "rbenv-ccache",
+              repo: "https://github.com/yyuu/rbenv-ccache.git",
+              version: "master" }
+
+    # essentials:
+    - include: tasks/apt.yml
+    - include: tasks/core.yml
+    - include: tasks/dotfiles.yml
+
+    #
+    # specific stuff than can be commented out
+    #
+    # editors, IDEs, terminals, etc
+    - include: tasks/atom.yml
+    - include: tasks/sublime-text.yml
+
+    # browsers
+    - include: tasks/chrome.yml
+    - include: tasks/tor-browser.yml
+
+    # tools
+    - include: tasks/awscli.yml
+    - include: tasks/docker.yml
+    - include: tasks/vpn.yml
+
+    # languages
+    - include: tasks/java.yml
+    - include: tasks/node.yml
+
+    # backup
+    - include: tasks/dropbox.yml
+
+    # chat
+    - include: tasks/skype.yml
+    - include: tasks/telegram.yml

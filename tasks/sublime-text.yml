@@ -1,0 +1,5 @@
+- name: Add SublimeText repository
+  apt_repository: repo='deb https://download.sublimetext.com/ apt/dev/'
+
+- name: Install SublimeText
+  package: name=sublime-text

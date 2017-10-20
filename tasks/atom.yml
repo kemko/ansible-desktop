@@ -1,0 +1,5 @@
+- name: Add Atom PPA
+  apt_repository: repo='ppa:webupd8team/atom'
+
+- name: Install Atom
+  package: name=atom

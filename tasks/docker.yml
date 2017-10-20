@@ -1,0 +1,8 @@
+- name: Add Docker keys
+  apt_key: url=https://apt.dockerproject.org/gpg
+
+- name: Add Docker repository
+  apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+
+- name: Install Docker
+  package: name=docker-engine

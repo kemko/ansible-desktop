@@ -1,0 +1,24 @@
+- name: Download dotfiles
+  git:
+    repo=https://github.com/kemko/dotfiles.git
+    dest=~/.dotfiles
+    version=master
+    update=yes
+  become: false
+
+- name: "Check if .zplug folder exist."
+  stat: path=~/.zplug
+  register: zplug_folder
+
+- name: Install zplug
+  git:
+    repo=https://github.com/b4b4r07/zplug.git
+    dest=~/.zplug
+    version=master
+    update=yes
+  when: zplug_folder.stat.exists == false
+
+- name: Set zsh as default shell
+  user: name={{user}} shell=/bin/zsh
+  when: isnt_ci
+  become: false
