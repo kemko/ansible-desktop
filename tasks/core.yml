@@ -37,6 +37,10 @@
     - virtualbox
     - torbrowser-launcher
 
+    # fonts
+    - fonts-ancient-scripts
+    - ttf-mscorefonts-installer
+
     # misc
     - apt-transport-https
     - python-gpgme
