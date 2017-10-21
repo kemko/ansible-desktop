@@ -1,0 +1,11 @@
+- name: Add Enpass apt key
+  apt_key: url=https://dl.sinew.in/keys/enpass-linux.key
+
+- name: Add Enpass repositories
+  apt_repository: repo="{{item}}"
+  with_items:
+    - "deb http://repo.sinew.in/ stable main"
+    - "deb http://repo.sinew.in/testing testing beta"
+
+- name: Install Enpass
+  package: name=enpass
