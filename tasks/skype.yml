@@ -1,2 +1,8 @@
+- name: Add Skype apt keys
+  apt_key: url=https://repo.skype.com/data/SKYPE-GPG-KEY
+
+- name: Add Skype repository
+  apt_repository: repo='deb [arch=amd64] https://repo.skype.com/deb stable main' filename=skype-stable
+
 - name: Install Skype
-  apt: deb=https://repo.skype.com/latest/skypeforlinux-64.deb
+  package: name=skypeforlinux

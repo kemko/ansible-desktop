@@ -1,38 +1,43 @@
-- name: Check Telegram is installed
+- name: Check if Telegram is installed
   stat:
-    path: /home/{{user}}/.local/share/Telegram
+    path: ~/.local/share/Telegram/Telegram
   register: telegram_binary
+  become: false
 
 - name: Download Telegram package
   get_url:
     url: https://tdesktop.com/linux
     dest: /tmp/telegram.tar.xz
   when:
-    - telegram_binary.stat.isreg is defined and telegram_binary.stat.isreg == false
+    - telegram_binary.stat.isreg is not defined or telegram_binary.stat.isreg == false
 
-- name: Ensure ~/.local/share exists
+- name: Ensure needed dirs exists
   file:
-    path: /home/{{user}}/.local/share
+    path: "{{item}}"
     state: directory
     owner: "{{user}}"
     group: "{{user}}"
     mode: 0755
+  with_items:
+    - ~/.local/share
+    - ~/bin
+  become: false
 
 - name: Unpack Telegram
   unarchive:
     src: /tmp/telegram.tar.xz
-    dest: /home/{{user}}/.local/share
+    dest: ~/.local/share
   when:
-    - telegram_binary.stat.isreg is defined and telegram_binary.stat.isreg == false
+    - telegram_binary.stat.isreg is not defined or telegram_binary.stat.isreg == false
   become: false
 
 - name: Install Telegram
   file:
-    src: /home/{{user}}/.local/share/Telegram/Telegram
-    dest: /home/{{user}}/bin/telegram
+    src: ~/.local/share/Telegram/Telegram
+    dest: ~/bin/telegram
     state: link
   when:
-    - telegram_binary.stat.isreg is defined and telegram_binary.stat.isreg == false
+    - telegram_binary.stat.isreg is not defined or telegram_binary.stat.isreg == false
   become: false
 
 - name: Remove Telegram package
@@ -40,4 +45,4 @@
     path: /tmp/telegram.tar.xz
     state: absent
   when:
-    - telegram_binary.stat.isreg is defined and telegram_binary.stat.isreg == false
+    - telegram_binary.stat.isreg is not defined or telegram_binary.stat.isreg == false

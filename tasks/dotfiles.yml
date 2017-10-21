@@ -7,8 +7,9 @@
   become: false
 
 - name: "Check if .zplug folder exist."
-  stat: path=~/.zplug
+  stat: path=/.zplug
   register: zplug_folder
+  become: false
 
 - name: Install zplug
   git:
@@ -17,6 +18,7 @@
     version=master
     update=yes
   when: zplug_folder.stat.exists == false
+  become: false
 
 - name: Set zsh as default shell
   user: name={{user}} shell=/bin/zsh

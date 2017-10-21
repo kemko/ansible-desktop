@@ -1,4 +1,4 @@
-- name: Add node apt keys
+- name: Add node apt key
   apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
 
 - name: Add node repositories
