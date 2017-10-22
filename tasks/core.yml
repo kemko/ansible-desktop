@@ -42,6 +42,7 @@
     - ttf-mscorefonts-installer
 
     # misc
+    - chrome-gnome-shell
     - apt-transport-https
     - python-gpgme
 
