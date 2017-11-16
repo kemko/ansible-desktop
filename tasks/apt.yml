@@ -3,10 +3,6 @@
     repo: '{{ item }}'
     update_cache: no
   with_items:
-    - 'deb http://ru.archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} restricted'
-    - 'deb-src http://ru.archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} restricted'
-    - 'deb http://ru.archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates restricted'
-    - 'deb-src http://ru.archive.ubuntu.com/ubuntu {{ ansible_distribution_release }}-updates restricted'
     - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} partner'
     - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} partner'
 
