@@ -1,10 +1,13 @@
 #!/bin/bash
 set -e
 
+export PATH="$HOME/.local/bin:$PATH"
+
 if test ! "$(which ansible)"; then
   echo "Installing ansible..."
   sudo apt-get install python2.7 python-pip python-apt
-  sudo -H pip install ansible===2.3.2.0 ansible-lint
+  pip install --upgrade --user pip
+  sudo -H pip install --user ansible===2.3.2.0 ansible-lint
 fi
 
 python --version
