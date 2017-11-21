@@ -33,6 +33,7 @@
 
     # gui
     - gpa
+    - gparted
     - meld
     - virtualbox
     - torbrowser-launcher
