@@ -3,8 +3,8 @@
     repo: '{{ item }}'
     update_cache: no
   with_items:
-    - 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} partner'
-    - 'deb-src http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} partner'
+    - 'deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner'
+    - 'deb-src http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner'
 
 - name: Update apt
   apt: update_cache=yes
